@@ -4,12 +4,9 @@ $ ->
     data:
       employees: []
     ready: ->
-      that = undefined
-      that = this
       $.ajax
         url: "/employees.json"
-        success: (res) ->
-          that.employees = res
+        success: (res) =>
           @employees = res
           return
   )
