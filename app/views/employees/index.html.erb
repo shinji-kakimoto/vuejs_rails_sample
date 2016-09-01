@@ -25,9 +25,14 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'New Employee', new_employee_path %>
 
 <br>
+
 <div id=demo>
 {{name}}
+{{email}}
+{{message}}
+<br>
+<button v-on:click="execute">実行</button>
 </div>
-<%= link_to 'New Employee', new_employee_path %>
