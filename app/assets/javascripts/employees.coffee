@@ -28,7 +28,7 @@ $ ->
           success: (res) =>
             @employees.push(res)
             @employee = {}
-            @jrrors = {}
+            @errors = {}
           error: =>
             @errors = res.responseJSON.errors
   )
