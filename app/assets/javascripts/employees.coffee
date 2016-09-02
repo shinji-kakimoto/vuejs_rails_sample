@@ -1,4 +1,9 @@
 $ ->
+  Vue.component("employee-row",
+    template: "#employee-row"
+    props: employee: Object
+  )
+
   employees = new Vue(
     el: "#employees"
     data:

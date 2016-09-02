@@ -1,3 +1,11 @@
+<script type="text/x-template" id="employee-row">
+<tr>
+  <td>{{ employee.name }}</td>
+  <td>{{ employee.email }}</td>
+  <td>{{ employee.manager }}</td>
+</tr>
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Employees</h1>
@@ -34,11 +42,12 @@
   </thead>
 
   <tbody>
-      <tr v-for="employee in employees">
-          <td>{{ employee.name }}</td>
-          <td>{{ employee.email }}</td>
-          <td>{{ employee.manager }}</td>
+      <tr
+          is="employee-row"
+          v-for="employee in employees"
+          :employee="employee">
       </tr>
+      </script>
   </tbody>
 </table>
 </div>
@@ -47,6 +56,14 @@
 <br>
 <br>
 
+
+
+
+
+
+
+
+
 <div id=demo>
 {{name}}
 {{email}}
@@ -54,3 +71,4 @@
 <br>
 <button v-on:click="execute">送信</button>
 </div>
+
