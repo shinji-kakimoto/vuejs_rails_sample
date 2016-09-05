@@ -1,9 +1,35 @@
 <script type="text/x-template" id="employee-row">
-<tr>
-  <td>{{ employee.name }}</td>
-  <td>{{ employee.email }}</td>
-  <td>{{ employee.manager }}</td>
-</tr>
+  <tr>
+    <td>
+      <!-- Show input when in edit mode -->
+      <div v-if="editMode">
+        <input type="text" v-model="employee.name"><br>
+        <span style="color:red">{{ errors.name }}</span>
+      </div>
+      <div v-else>{{ employee.name }}</div>
+    </td>
+    <td>
+      <div v-if="editMode">
+        <input type="text" v-model="employee.email"><br>
+        <span style="color:red">{{ errors.email }}</span>
+      </div>
+      <div v-else>{{ employee.email }}</div>
+    </td>
+    <td>
+      <div v-if="editMode">
+        <input type="checkbox" v-model="employee.manager">
+      </div>
+      <div v-else>{{ employee.manager ? '&#10004;' : '' }}</div>
+    </td>
+    <td>
+      <!-- Save button calls updateEmployee -->
+      <button v-if="editMode" @click="updateEmployee">Save</button>
+      <!-- Edit button puts row into edit mode -->
+      <button v-else @click="editMode = true">Edit</button>
+      <!-- Promote / Demote based on current status -->
+      <button v-if="!editMode" @click="toggleManagerStatus">{{ employee.manager ? 'Demote' : 'Promote' }}</button>
+    </td>
+  </tr>
 </script>
 
 <p id="notice"><%= notice %></p>
@@ -47,6 +73,7 @@
          v-for="employee in employees"
          :employee="employee">
      </tr>
+     <% # 画面表示時にすべてのEmployeeのデータを表示して、各データを保持 %>
      <tr>
        <td>
          <input type="text" v-model="employee.name"><br>

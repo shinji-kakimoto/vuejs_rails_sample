@@ -2,7 +2,27 @@ $ ->
   Vue.component "employee-row",
     template: "#employee-row"
     props: employee: Object
-
+    data: ->
+      {
+        editMode: false
+        errors: {}
+      }
+    methods:
+      #管理者/一般を切り替え、Employeeを更新
+      toggleManagerStatus: ->
+        @employee.manager = !@employee.manager
+        @updateEmployee()
+      updateEmployee: ->
+        $.ajax
+          method: 'PATCH'
+          data: employee: @employee
+          url: '/employees/' + @employee.id + '.json'
+          success: (res) =>
+            @errors = {}
+            @employee = res
+            @editMode = false
+          error: (res) =>
+            @errors = res.responseJSON.errors
 
   employees = new Vue(
     el: "#employees"
@@ -18,7 +38,6 @@ $ ->
         url: "/employees.json"
         success: (res) =>
           @employees = res
-          return
     methods:
       hireEmployee: ->
         $.ajax
@@ -42,6 +61,4 @@ $ ->
     methods:
       execute: ->
         @message = "送信しました"
-        return
   )
-  return
