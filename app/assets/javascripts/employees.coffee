@@ -23,6 +23,12 @@ $ ->
             @editMode = false
           error: (res) =>
             @errors = res.responseJSON.errors
+      fireEmployee: ->
+        $.ajax
+          method: 'DELETE'
+          url: '/employees/' + @employee.id + '.json'
+          success: (res) =>
+            @$remove()
 
   employees = new Vue(
     el: "#employees"
