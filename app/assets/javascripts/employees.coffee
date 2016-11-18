@@ -36,11 +36,19 @@ $ ->
         @$dispatch('child-msg', @msg)
         # こっちはEmployeeの値が変わると、追従。
         # @$dispatch('child-msg', @employee_name())
+        # 方針: 値をまとめて送る方法が謎なので、ここに送信する、
+      # checkboxでtoggleしたいけど、うまくいかない。
+      # ※buttonはうまくいく。->奇跡のspellミス
+      addEmployee: ->
+        @$dispatch('child-msg-add', @msg)
+      removeEmployee: ->
+        @$dispatch('child-msg-remove', @msg)
 
 
-  employees = new Vue(
+  window.employees = new Vue(
     el: "#employees"
     data:
+      select_names: []
       select_name: undefined
       employees: []
       employee:
@@ -68,6 +76,10 @@ $ ->
     events:
       'child-msg': (msg) ->
         @select_name = msg
+      'child-msg-add': (msg) ->
+        @select_names.push(msg)
+      'child-msg-remove': (msg) ->
+        @select_names.$remove(msg)
   )
 
   demo = new Vue(
@@ -80,5 +92,6 @@ $ ->
       execute: ->
         @message = "送信しました"
       test: ->
+        @message = "送りたくない"
         @email = "go!!" if @name > 5
   )

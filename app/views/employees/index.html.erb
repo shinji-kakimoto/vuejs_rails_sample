@@ -1,7 +1,16 @@
 <script type="text/x-template" id="employee-row">
   <tr>
     <td>
-      <%= button_tag "Select", "v-on:click": "selectEmployee" %>
+      <input type="checkbox" v-on:change="addEmployee">
+    </td>
+    <td>
+      <button @click="addEmployee">add</button>
+    </td>
+    <td>
+      <button @click="removeEmployee">remove</button>
+    </td>
+    <td>
+      <button @click="selectEmployee">Select</button>
     </td>
     <td>
       <!-- Show input when in edit mode -->
@@ -104,6 +113,7 @@
   </tbody>
 </table>
 <div>選択したユーザー名"{{ select_name }}"</div>
+<div>選択したユーザー名(複数)"{{ select_names }}"</div>
 </div>
 
 <br>
@@ -119,7 +129,7 @@
 
 
 <div id=demo>
-<input type="text" v-model="name", v-on:change="test"><br>
+<input type="checkbox" v-on:change="test"><br>
 {{email}}
 {{message}}
 <br>
