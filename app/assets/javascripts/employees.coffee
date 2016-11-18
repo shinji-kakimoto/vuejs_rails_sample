@@ -6,6 +6,7 @@ $ ->
       {
         editMode: false
         errors: {}
+        msg: @employee.name
       }
     methods:
       #管理者/一般を切り替え、Employeeを更新
@@ -29,10 +30,14 @@ $ ->
           url: '/employees/' + @employee.id + '.json'
           success: (res) =>
             @$remove()
+      selectEmployee: ->
+        @$dispatch('child-msg', @msg)
+
 
   employees = new Vue(
     el: "#employees"
     data:
+      select_name: undefined
       employees: []
       employee:
         name: ''
@@ -56,6 +61,9 @@ $ ->
             @errors = {}
           error: =>
             @errors = res.responseJSON.errors
+    events:
+      'child-msg': (msg) ->
+        @select_name = msg
   )
 
   demo = new Vue(

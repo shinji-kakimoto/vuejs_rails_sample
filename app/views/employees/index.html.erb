@@ -1,6 +1,9 @@
 <script type="text/x-template" id="employee-row">
   <tr>
     <td>
+      <button @click="selectEmployee" >Select</button>
+    </td>
+    <td>
       <!-- Show input when in edit mode -->
       <div v-if="editMode">
         <input type="text" v-model="employee.name"><br>
@@ -57,10 +60,13 @@
     <% end %>
   </tbody>
 </table>
+<% # ここがvuejs %>
 <div id="employees">
+  <br>
 <table>
   <thead>
     <tr>
+      <th>Select</th>
       <th>Name</th>
       <th>Email</th>
       <th>Manager</th>
@@ -79,6 +85,8 @@
      <% # 以下、新規入力画面 %>
      <tr>
        <td>
+       </td>
+       <td>
          <input type="text" v-model="employee.name"><br>
          <span style="color:red">{{ errors.name }}</span>
        </td>
@@ -95,6 +103,8 @@
      </tr>
   </tbody>
 </table>
+<div>選択したユーザー名"{{ select_name }}"</div>
+<div>選択したユーザー名"{{ messages }}"</div>
 </div>
 
 <br>
