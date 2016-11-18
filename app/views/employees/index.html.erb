@@ -72,9 +72,11 @@
      <tr
          is="employee-row"
          v-for="employee in employees"
-         :employee="employee">
+         :employee="employee"
      </tr>
      <% # 画面表示時にすべてのEmployeeのデータを表示して、各データを保持 %>
+
+     <% # 以下、新規入力画面 %>
      <tr>
        <td>
          <input type="text" v-model="employee.name"><br>
