@@ -5,7 +5,7 @@ script#employee-row[type="text/x-template"]
         input[type="text" v-model="employee.name"]
         br
         span[style="color:red"]
-          | {{ errors.name }}
+          = "{{ errors.name }}"
       div[v-else]
         | {{ employee.name }}
     td
@@ -63,7 +63,7 @@ table
           | Manager
         th[colspan="3"]
     tbody
-      |  <tr is="employee-row" v-for="employee in employees" :employee="employee" 
+      tr is="employee-row" v-for="employee in employees" :employee="employee"
       - # 画面表示時にすべてのEmployeeのデータを表示して、各データを保持
       - # 以下、新規入力画面
       tr
