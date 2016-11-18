@@ -1,7 +1,7 @@
 <script type="text/x-template" id="employee-row">
   <tr>
     <td>
-      <button @click="selectEmployee">Select</button>
+      <%= button_tag "Select", "v-on:click": "selectEmployee" %>
     </td>
     <td>
       <!-- Show input when in edit mode -->
