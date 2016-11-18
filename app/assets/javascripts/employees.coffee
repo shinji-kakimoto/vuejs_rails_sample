@@ -9,6 +9,8 @@ $ ->
         msg: @employee.name
       }
     methods:
+      employee_name: ->
+        @employee.name
       #管理者/一般を切り替え、Employeeを更新
       toggleManagerStatus: ->
         @employee.manager = !@employee.manager
@@ -32,6 +34,8 @@ $ ->
             @$remove()
       selectEmployee: ->
         @$dispatch('child-msg', @msg)
+        # こっちはEmployeeの値が変わると、追従。
+        # @$dispatch('child-msg', @employee_name())
 
 
   employees = new Vue(
