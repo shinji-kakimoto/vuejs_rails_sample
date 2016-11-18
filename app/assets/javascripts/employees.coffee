@@ -67,4 +67,6 @@ $ ->
     methods:
       execute: ->
         @message = "送信しました"
+      test: ->
+        @email = "go!!" if @name > 5
   )
